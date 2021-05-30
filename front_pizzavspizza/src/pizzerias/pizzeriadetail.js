@@ -2,15 +2,17 @@ import React, {Component} from "react";
 
 class PizzaDetail extends  Component {
     render() {
-    const p = this.props.p
+        const obj = this.props.pizzeriaDetail;
         return(
-            <div>
-                <h4>{p.id}</h4>
-                <h4>{p.pizzeria_name}</h4>
-                <h4>{p.city}</h4>
-                <h4>{p.zip_code}</h4>
+            <div style={{color: "yellow", border: "1px solid yellow"}}>
+                <h4>{obj.pizzeria_name}</h4>
+                <h5>
+                    Address: {obj.street}, {obj.city}, {obj.state} {obj.zip_code}
+                </h5>
+                <h6>tel: {obj.phone_number}</h6>
+                <p>{obj.description}</p>
             </div>
-        )
+        );
     }
 }
-export default PizzaDetail
+export default PizzaDetail;
