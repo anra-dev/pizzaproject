@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PizzaDetail from "./pizzeriadetail";
+import PizzaForm from "./pizzeriaform";
 import axios from 'axios';
 
 
@@ -50,6 +51,7 @@ class PizzaList extends Component {
                 {this.state.showComponent ? (
                     <PizzaDetail pizzeriaDetail={this.state.pizzeria} />
                 ): null}
+                <PizzaForm/>
             </div>
         );
     }
