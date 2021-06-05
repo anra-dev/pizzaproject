@@ -1,6 +1,29 @@
 import React, {Component} from "react";
+import PizzaUpdate from "./pizzeriaupdate";
+import axios from "axios";
 
 class PizzaDetail extends  Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showComponent: false
+        };
+        this.updatePizzeriaDetails = this.updatePizzeriaDetails.bind(this);
+        this.deletePizzeria = this.deletePizzeria.bind(this);
+    }
+    updatePizzeriaDetails() {
+        this.setState({showComponent: true})
+    }
+    deletePizzeria(obj) {
+        console.log(obj);
+        axios.delete("http://localhost:8000".concat(obj))
+            .then((response) => {
+                console.log(response);
+            })
+            .catch(function (error){
+                console.log(error);
+            })
+    }
     render() {
         const obj = this.props.pizzeriaDetail;
         return(
@@ -11,6 +34,13 @@ class PizzaDetail extends  Component {
                 </h5>
                 <h6>tel: {obj.phone_number}</h6>
                 <p>{obj.description}</p>
+                <button style={{backgroundColor: "white"}} onClick={() => this.updatePizzeriaDetails()}>
+                    Update
+                </button>
+                {this.state.showComponent ? <PizzaUpdate pizzeriaUpdate={obj}/> : null}
+                <button style={{backgroundColor: "white"}} onClick={() => this.deletePizzeria(obj.delete)}>
+                    Delete
+                </button>
             </div>
         );
     }
